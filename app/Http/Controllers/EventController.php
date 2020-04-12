@@ -31,10 +31,6 @@ class EventController extends Controller
         }
 
         $events = $events->get();
-//
-//        $events = $events->get();
-
-//        $events = Event::all();
 
         $categories = Category::all('name');
 
@@ -48,7 +44,9 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all('name');
+
+        return view('events/create', compact('categories'));
     }
 
     /**
@@ -59,7 +57,13 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $user('id');
+
+        Event::create($data);
+
+        return redirect('/event/show/{id}')->with('success', 'Event successfuly created!');
     }
 
     /**

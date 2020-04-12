@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
+    public $guarded = [];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

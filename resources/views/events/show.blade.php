@@ -13,7 +13,7 @@
         </div>
 
         <div style="padding: 25px;">
-            <button type="button" class="button is-link" onclick="window.location='/products/{{$event->id}}/edit'">Edit</button>
+            <a href="/products/{{ $event->id }}/edit">Edit</a>
         </div>
     </div>
 @endsection

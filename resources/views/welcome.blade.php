@@ -93,7 +93,7 @@
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
-                        <a href="{{url ('/event/create') }}">Create Your Event</a>
+                        <a href="{{ url ('/event/create') }}">Create Your Event</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
@@ -138,6 +138,11 @@
                 </div>
                 <div>
                     {{ $event->time }}
+                </div>
+                <div>
+                    @foreach($event->categories as $category)
+                        <a href="/?category= {{ $category->name }} ">{{ $category->name }}</a>
+                    @endforeach
                 </div>
                 <br>
             @endforeach
