@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableCategoryUser extends Migration
+class CreateCategoryEventTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateTableCategoryUser extends Migration
      */
     public function up()
     {
-        Schema::create('table_category_user', function (Blueprint $table) {
+        Schema::create('category_event', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('event_id');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateTableCategoryUser extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_category_user');
+        Schema::dropIfExists('category_event');
     }
 }
