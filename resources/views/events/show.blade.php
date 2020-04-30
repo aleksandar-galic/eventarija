@@ -1,19 +1,33 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <br><h1 class="title">{{ $event->title }}</h1>
-
-        <div class="showContent">
-            <label for="name" class="label">Description</label>
-            <div class="content">{{ $event->description }}</div>
-
-            <label for="stock" class="label">Place</label>
-            <div class="content">{{ $event->place }}</div>
+    <div class="container" style="display: flex; flex-direction: column;">
+        <h1>{{ $event->title }}</h1>
+        
+        <b>Description</b>
+        <div>
+        	{{ $event->description }}
         </div>
 
-        <div style="padding: 25px;">
-            <a href="/products/{{ $event->id }}/edit">Edit</a>
+        <b>Place</b>
+        <div>
+        	{{ $event->place }}
         </div>
+
+        <b>Date</b>
+        <div>
+        	{{ $event->date }}
+        </div>
+
+        <b>Time</b>
+        <div>
+        	{{ $event->time }}
+        </div>
+
+	    @auth
+	    	<div style="padding: 25px;">
+	            <a href="/products/{{ $event->id }}/edit">Edit</a>
+	        </div>
+	    @endauth
     </div>
 @endsection
