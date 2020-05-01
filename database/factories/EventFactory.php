@@ -12,6 +12,7 @@ $factory->define(Event::class, function (Faker $faker) {
         'time' => $faker->time(),
         'place' => $faker->city,
         'description' => $faker->text,
+        'image' => $faker->image('public/storage/images', 400, 300, null, false),
         'creator_id' => factory(\App\User::class)->create(),
     ];
 });

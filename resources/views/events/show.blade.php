@@ -3,6 +3,8 @@
 @section('content')
     <div class="container" style="display: flex; flex-direction: column;">
         <h1>{{ $event->title }}</h1>
+
+        <img src="/storage/images/{{ $event->image }}">
         
         <b>Description</b>
         <div>

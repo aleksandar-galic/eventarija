@@ -17,13 +17,9 @@ class EventController extends Controller
      */
     public function index(Request $request)
     {
-//        $events = Event::with('categories', function($query){
-//            $query->select('name');
-//        });
-//
-        $events = new Event();
+        $events = new Event;
 
-        if (!empty($request->all()))
+        if ($request->has('category'))
         {
             $events = $events->whereHas('categories', function($query) use($request) {
                 $query->where('name', '=', $request->category);
@@ -44,7 +40,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        $categories = Category::all('name');
+        $categories = Category::all('id', 'name');
 
         return view('events/create', compact('categories'));
     }
@@ -57,13 +53,17 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        $event_data = $request->except('categories');
+        $event_data['creator_id'] = $request->user()->id;
+        $event_data['image'] = '3229c6412afee5a713263b41243f193e.jpg'; //hardcoded. Make an image import on view. Then delete this line
 
-        $user('id');
+        $event = new Event();
 
-        Event::create($data);
+        $event_id = $event->create($event_data)->id;
 
-        return redirect('/event/show/{id}')->with('success', 'Event successfuly created!');
+        $event->find($event_id)->categories()->attach($request->categories);
+
+        return redirect("/events/{$event_id}")->with('success', 'Event successfuly created!');
     }
 
     /**
@@ -72,10 +72,8 @@ class EventController extends Controller
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Event $event)
     {
-        $event = Event::find($id);
-
         return view('events.show', compact('event'));
     }
 

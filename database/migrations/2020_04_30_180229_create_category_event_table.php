@@ -15,8 +15,8 @@ class CreateCategoryEventTable extends Migration
     {
         Schema::create('category_event', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('event_id');
+            $table->foreignId('category_id');
+            $table->foreignId('event_id');
             $table->timestamps();
         });
     }

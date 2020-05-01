@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'EventController@index');
-Route::get('/event/{id}', 'EventController@show');
+Route::get('/events/{event}', 'EventController@show');
 Route::get('/event/create', 'EventController@create');
-Route::get('/event/store', 'EventController@store');
+Route::post('/event/store', 'EventController@store');
 
 Auth::routes();
 

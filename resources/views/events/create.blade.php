@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <form method="get" action="/event/store">
+    <form method="post" action="/event/store">
+        @csrf
         <div class="container">
             <br>
             <label for="title">Naslov</label>
@@ -24,13 +25,10 @@
             <textarea name="description" placeholder="Opisi dogadjaj"></textarea>
 
             <br>
-            <label for="category">Kategorija</label>
-            <select name="category" placeholder="Gde se dogadjaja odrzava?">
-                @foreach($categories as $category)
-                    <option value=" {{ $category->name }} ">{{ $category->name }}</option>
-                @endforeach
-            </select>
-
+            <label for="category">Izaberi kategorije (max 3)</label><br>
+            @foreach($categories as $category)
+                <input type="checkbox" name="categories[]" value="{{ $category->id }}"> {{ $category->name }}
+            @endforeach
             <br>
             <button type="submit">Napravi</button>
         </div>

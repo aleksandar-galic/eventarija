@@ -20,7 +20,8 @@ class CreateEventsTable extends Migration
             $table->time('time');
             $table->string('place');
             $table->text('description');
-            $table->unsignedBigInteger('creator_id');
+            $table->foreignId('creator_id');
+            $table->binary('image');
             $table->timestamps();
         });
     }

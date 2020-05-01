@@ -15,8 +15,8 @@ class CreateCategoryUserTable extends Migration
     {
         Schema::create('category_user', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('user_id');
+            $table->foreignId('category_id');
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }
